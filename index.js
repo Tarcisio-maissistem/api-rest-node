@@ -3,30 +3,22 @@ const app = express()
 
 app.use(express.json());
 
-// app.get('/', (req, res) => {
-//     res.json({ 'API': 'OK' })
-// })
-
-// app.get('/usuario/:id', (req, res) => {
-//     let id = req.params.id;
-//     res.json({ 'id': id })
-// })
-
-// app.post('/cliente/:id', (req, res) => {
-
-//     res.json(req.body)
-// })
-
-const ControllerUsers = require('./controllers/ControllerUsers');
+const UsersController = require('./controllers/UsersController');
+const ProductController = require('./controllers/ProductController');
 
 //USUARIOS
-app.post('/usuario/insert',     ControllerUsers.insert);
-app.put('/usuario/update/:id',  ControllerUsers.update);
-app.get('/usuarios',            ControllerUsers.findAll);
-app.get('/usuario/:id',         ControllerUsers.findById);
-app.delete('/usuario/:id',      ControllerUsers.delete);
+app.post('/usuario/insert',     UsersController.insert);
+app.put('/usuario/update/:id',  UsersController.update);
+app.get('/usuarios',            UsersController.showAll);
+app.get('/usuario/:id',         UsersController.showID);
+app.delete('/usuario/:id',      UsersController.delete);
 
-// FUNCIONARIOS
+// Produtos
+app.post('/produto/insert',     ProductController.insert); // Inserir novo
+app.put('/produto/update/:id',  ProductController.update); // Atualizar
+app.get('/produtos',            ProductController.showAll); // Listagem
+app.get('/produto/:id',         ProductController.showID); // Editar especifico 
+app.delete('/produto/:id',      ProductController.delete); // Excluir
 
 
 const PORT = process.env.PORT || 8085;
